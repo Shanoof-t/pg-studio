@@ -1,11 +1,17 @@
-import path from "path";
 import dotenv from "dotenv";
 import pg from "pg";
+import {  resolve } from "path";
 
-console.log("process.cwd():", process.cwd());
-console.log("Expected .env path:", path.resolve(process.cwd(), ".env"));
 
-dotenv.config();
+// Get where the command was called from
+const callerDir = process.env.INIT_CWD || process.cwd();
+
+// Force load .env from that location
+const envPath = resolve(callerDir, ".env");
+console.log("Loading .env from:", envPath);
+
+dotenv.config({ path: envPath });
+
 
 
 const dbUrl =
