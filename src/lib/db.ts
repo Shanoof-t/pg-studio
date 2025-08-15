@@ -3,13 +3,14 @@ import dotenv from "dotenv";
 import pg from "pg";
 import fs from "fs";
 
-const projectDir = process.env.PWD || process.cwd();
-const envPath = path.resolve(projectDir, ".env");
+const userCwd = process.env.PWD || process.cwd();
+const envPath = path.resolve(userCwd, ".env");
 
 console.log("Loading .env from:", envPath);
 
 if (!fs.existsSync(envPath)) {
-  console.warn(`⚠️ No .env file found at ${envPath}`);
+  console.error(`No .env file found at ${envPath}`);
+  process.exit(1);
 }
 
 dotenv.config({ path: envPath });
