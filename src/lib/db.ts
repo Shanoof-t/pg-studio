@@ -12,6 +12,8 @@ const dbUrl =
   process.env.PG_CONNECTION ||
   process.env.CONNECTION_STRING;
 
+console.log("dbUrl: ", dbUrl);
+
 if (!dbUrl) {
   console.error(
     "No database connection string found. Please set one of: DB_URL, DATABASE_URL, PG_URL, POSTGRES_URL, PG_CONNECTION, CONNECTION_STRING"
