@@ -1,0 +1,35 @@
+# Ignore all source code
+*.log
+node_modules
+src/
+pages/
+components/
+public/
+styles/
+app/
+hooks/
+context/
+
+# Ignore configs & tooling
+next.config.ts
+tailwind.config.ts
+postcss.config.mjs
+tsconfig.json
+.eslintrc*
+.prettier*
+.vscode/
+.idea/
+components.json
+eslint.config.mjs
+next-env.d.ts
+
+# Ignore build caches
+.next/cache
+out/
+.env
+
+# Keep only what's needed
+!package.json
+!.next
+!index.js
+!README.md
