@@ -1,11 +1,16 @@
+import path from "path";
 import dotenv from "dotenv";
 import pg from "pg";
-import { resolve } from "path";
+import fs from "fs";
 
-const callerDir = process.env.INIT_CWD || process.cwd();
+const projectDir = process.env.PWD || process.cwd();
+const envPath = path.resolve(projectDir, ".env");
 
-const envPath = resolve(callerDir, ".env");
 console.log("Loading .env from:", envPath);
+
+if (!fs.existsSync(envPath)) {
+  console.warn(`⚠️ No .env file found at ${envPath}`);
+}
 
 dotenv.config({ path: envPath });
 
@@ -17,7 +22,7 @@ const dbUrl =
   process.env.PG_CONNECTION ||
   process.env.CONNECTION_STRING;
 
-console.log("dbUrl: ", dbUrl);
+console.log("dbUrl:", dbUrl);
 
 if (!dbUrl) {
   console.error(
@@ -26,20 +31,16 @@ if (!dbUrl) {
   process.exit(1);
 }
 
-const pool = new pg.Pool({
-  connectionString: dbUrl,
-});
+const pool = new pg.Pool({ connectionString: dbUrl });
 
 export const query = async (queryText: string, params?: string[]) => {
   try {
-    const res = await pool.query(queryText, params);
-    return res;
+    return await pool.query(queryText, params);
   } catch (error: unknown) {
-    const err = {
+    console.error("QUERY FAILED:", {
       query: queryText,
       error: error instanceof Error ? error.message : "Unknown error occurred",
-    };
-    console.error("QUERY FAILED:", err);
-    throw err;
+    });
+    throw error;
   }
 };
