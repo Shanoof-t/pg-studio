@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import pg from "pg";
 import fs from "fs";
 
+console.log("process.env.PWD : ", process.env.PWD);
+console.log("process.cwd(): ", process.cwd());
 const userCwd = process.env.PWD || process.cwd();
 const envPath = path.resolve(userCwd, ".env");
 
