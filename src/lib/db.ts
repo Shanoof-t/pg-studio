@@ -1,18 +1,13 @@
 import dotenv from "dotenv";
 import pg from "pg";
-import {  resolve } from "path";
+import { resolve } from "path";
 
-
-// Get where the command was called from
 const callerDir = process.env.INIT_CWD || process.cwd();
 
-// Force load .env from that location
 const envPath = resolve(callerDir, ".env");
 console.log("Loading .env from:", envPath);
 
 dotenv.config({ path: envPath });
-
-
 
 const dbUrl =
   process.env.DB_URL ||
