@@ -1,5 +1,8 @@
-import "dotenv/config";
+import path from "path";
+import dotenv from "dotenv";
 import pg from "pg";
+
+dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const dbUrl =
   process.env.DB_URL ||
