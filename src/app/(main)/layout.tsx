@@ -12,7 +12,7 @@ export default async function layout({
   return (
     <div className="flex w-full h-screen">
       <Sidebar tableNames={tableNames} />
-      <main className="w-5/6">{children}</main>
+      <main className="w-5/6  overflow-scroll scrollbar-hide">{children}</main>
     </div>
   );
 }
