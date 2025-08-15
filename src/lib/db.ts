@@ -2,6 +2,8 @@ import path from "path";
 import dotenv from "dotenv";
 import pg from "pg";
 
+console.log("path: ", path.resolve(process.cwd(), ".env"));
+
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const dbUrl =
