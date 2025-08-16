@@ -17,7 +17,8 @@
     ".next",
     "package.json",
     "README.md",
-    "index.js"
+    "index.js",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "next dev --turbopack",
