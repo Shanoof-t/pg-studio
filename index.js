@@ -17,10 +17,11 @@ const child = spawn("npx", ["next", "start", "-p", "5555"], {
   stdio: "inherit",
   cwd: __dirname,
   shell: true,
-  env: {
-    DB_URL,
-    NODE_ENV: "production",
-  },
+  // env: {
+  //   ...process.env,
+  //   DB_URL,
+  //   NODE_ENV: "production",
+  // },
 });
 
 child.on("close", (code) => {
