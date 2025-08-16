@@ -9,7 +9,6 @@ if (!DB_URL) {
   process.exit(1);
 }
 
-console.log("DB_URL in db: ", DB_URL);
 const pool = new pg.Pool({ connectionString: DB_URL });
 
 export const query = async (queryText: string, params?: string[]) => {

@@ -3,8 +3,6 @@
 const { spawn } = require("child_process");
 require("dotenv").config();
 
-console.log("DB_URL-----", process.env.DB_URL);
-
 const DB_URL =
   process.env.DB_URL ||
   process.env.DATABASE_URL ||
