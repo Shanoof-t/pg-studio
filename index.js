@@ -3,7 +3,7 @@
 const { spawn } = require("child_process");
 require("dotenv").config();
 
-console.log("DB_URL-----", DB_URL);
+console.log("DB_URL-----", process.env.DB_URL);
 const child = spawn("npx", ["next", "start", "-p", "5555"], {
   stdio: "inherit",
   cwd: __dirname,
