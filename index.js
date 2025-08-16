@@ -19,6 +19,7 @@ const child = spawn("npx", ["next", "start", "-p", "5555"], {
   shell: true,
   env: {
     DB_URL,
+    NODE_ENV: "production",
   },
 });
 
