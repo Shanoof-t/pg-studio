@@ -2,13 +2,16 @@
   "name": "pg-studio",
   "version": "1.0.0",
   "private": false,
+  "license": "MIT",
   "author": {
     "name": "shanoof",
     "email": "shanoof.001@gmail.com"
   },
-  "description": "GUI For PG",
+  "description": "simple graphical interface for the postgres",
   "keywords": [
-    "pg"
+    "pg",
+    "psql",
+    "postgresql"
   ],
   "files": [
     ".next",
