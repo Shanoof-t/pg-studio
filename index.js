@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 const { spawn } = require("child_process");
+require("dotenv").config();
 
-const originalCwd = process.env.INIT_CWD || process.cwd();
-
+console.log("DB_URL-----", DB_URL);
 const child = spawn("npx", ["next", "start", "-p", "5555"], {
   stdio: "inherit",
-  cwd: originalCwd,
+  cwd: __dirname,
   shell: true,
 });
 
