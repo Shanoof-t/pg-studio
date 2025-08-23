@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { fetchAllTables } from "@/services/tables";
 import { redirect } from "next/navigation";
 

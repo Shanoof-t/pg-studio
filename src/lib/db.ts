@@ -1,19 +1,32 @@
 import pg from "pg";
 
-const DB_URL = process.env.DB_URL;
+let pool: pg.Pool | null = null;
 
-if (!DB_URL) {
-  console.error(
-    "No database connection string found. Please set one of: DB_URL, DATABASE_URL, PG_URL, POSTGRES_URL, PG_CONNECTION, CONNECTION_STRING"
-  );
-  process.exit(1);
-}
+const initializePool = () => {
+  if (pool) return pool;
 
-const pool = new pg.Pool({ connectionString: DB_URL });
+  const DB_URL = 
+    process.env.DB_URL ||
+    process.env.DATABASE_URL ||
+    process.env.PG_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.PG_CONNECTION ||
+    process.env.CONNECTION_STRING;
+
+  if (!DB_URL) {
+    throw new Error(
+      "No database connection string found. Please set one of: DB_URL, DATABASE_URL, PG_URL, POSTGRES_URL, PG_CONNECTION, CONNECTION_STRING"
+    );
+  }
+
+  pool = new pg.Pool({ connectionString: DB_URL });
+  return pool;
+};
 
 export const query = async (queryText: string, params?: string[]) => {
   try {
-    return await pool.query(queryText, params);
+    const poolInstance = initializePool();
+    return await poolInstance.query(queryText, params);
   } catch (error: unknown) {
     console.error("QUERY FAILED:", {
       query: queryText,
