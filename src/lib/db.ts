@@ -23,7 +23,7 @@ const initializePool = () => {
   return pool;
 };
 
-export const query = async (queryText: string, params?: string[]) => {
+export const query = async (queryText: string, params?: unknown[]) => {
   try {
     const poolInstance = initializePool();
     return await poolInstance.query(queryText, params);

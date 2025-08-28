@@ -30,7 +30,7 @@ export default async function TablePage({ params }: PageProps) {
           <Database className="w-6 h-6" />
           {table}
         </h1>
-        <Table data={tableData} />
+        <Table data={tableData} table={table}/>
       </div>
     );
   } catch (error: unknown) {
